@@ -1,0 +1,17 @@
+create SCHEMA IF NOT EXISTS vote;
+
+CREATE TABLE vote.answer (
+  id UUID NOT NULL PRIMARY KEY
+  );
+
+CREATE TABLE vote.question (
+  id UUID NOT NULL PRIMARY KEY
+  );
+
+CREATE TABLE vote.voting(
+  id UUID NOT NULL PRIMARY KEY
+  );
+
+CREATE TABLE vote.vote (
+  id UUID NOT NULL PRIMARY KEY
+ );
