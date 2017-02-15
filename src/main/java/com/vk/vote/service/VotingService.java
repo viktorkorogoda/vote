@@ -23,19 +23,26 @@ public class VotingService {
     public Voting createVoting(Voting voting){
         UUID votingId = UUID.randomUUID();
         voting.setId(votingId);
-        voting.setLink("/" + votingId.toString());
+        voting.setLink("/voting/" + votingId.toString());
         voting.setResult("/result/" + votingId.toString());
-        return votingRepository.saveAndFlush(voting);
+        return votingRepository.save(voting);
     }
 
-    public Voting startVoting(Voting voting){
+    public Voting startVoting(UUID votingId){
+        Voting voting = votingRepository.getOne(votingId);
         voting.setOpened(true);
-        return votingRepository.saveAndFlush(voting);
+        return votingRepository.save(voting);
     }
 
     public Voting closeVoting(UUID uuid){
         Voting voting = votingRepository.findOne(uuid);
         voting.setOpened(false);
-        return votingRepository.saveAndFlush(voting);
+        return votingRepository.save(voting);
     }
+
+    public Voting getVoting(UUID votingId){
+        return votingRepository.getOne(votingId);
+    }
+
+
 }

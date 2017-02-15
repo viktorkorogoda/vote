@@ -24,9 +24,10 @@ public class AnswerService {
 
     public Answer registerVote(UUID answerId){
         Answer answer = getAnswerById(answerId);
-        Vote vote = new Vote(UUID.randomUUID(), answerId, LocalDateTime.now());
+        Vote vote = new Vote();
+        vote.setDate(LocalDateTime.now());
         answer.getVoteList().add(vote);
-        return answerRepository.saveAndFlush(answer);
+        return answerRepository.save(answer);
     }
 
     public Answer getAnswerById(UUID answerId){

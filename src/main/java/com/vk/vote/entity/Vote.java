@@ -12,14 +12,17 @@ import java.util.UUID;
  * Created by Viktor.
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "votes")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Vote {
+
     @Id
+    @GeneratedValue
     private UUID id;
-    @Column(name = "answer_id")
-    private UUID answer;
     private LocalDateTime date;
+    @ManyToOne
+    @JoinColumn(name = "answerId", updatable = false, insertable = false)
+    private Answer answer;
 }
